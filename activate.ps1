@@ -1,5 +1,5 @@
 # Dot-source this script to activate the shared environment in the current shell:
-#   . "$HOME\work\venv-global\activate.ps1"
+#   . "$HOME\work\GlobalVenv\activate.ps1"
 
 $venvPath = Join-Path $PSScriptRoot ".venv"
 $activateScript = Join-Path $venvPath "Scripts\Activate.ps1"
