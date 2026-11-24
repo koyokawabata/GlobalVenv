@@ -1,4 +1,4 @@
-# venv-global
+# GlobalVenv
 
 A shared Python environment for lightweight experiments and writing workflows, including Quarto projects whose source files live in OneDrive.
 
