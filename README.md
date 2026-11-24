@@ -9,7 +9,7 @@ This working directory is outside OneDrive, and the environment lives in `.venv`
 ## Initial setup and updates
 
 ```powershell
-Set-Location "$HOME\work\venv-global"
+Set-Location "$HOME\work\GlobalVenv"
 uv sync
 ```
 
@@ -18,7 +18,7 @@ uv sync
 From any working directory, run:
 
 ```powershell
-. "$HOME\work\venv-global\activate.ps1"
+. "$HOME\work\GlobalVenv\activate.ps1"
 ```
 
 The `python` command will then use the shared environment, and `QUARTO_PYTHON` will point to the same interpreter. Run experiment scripts or `quarto render` in that PowerShell session. Run `deactivate` when you are finished.
@@ -28,5 +28,5 @@ The Quarto CLI is installed separately; it is not a Python package. This environ
 To run a Python script once without activating the environment:
 
 ```powershell
-uv run --project "$HOME\work\venv-global" -- python .\experiment.py
+uv run --project "$HOME\work\GlobalVenv" -- python .\experiment.py
 ```
