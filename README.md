@@ -1,31 +1,31 @@
 # venv-global
 
-個人用の共有 Python 環境です。軽い実験や、ソースを OneDrive に置く執筆・Quarto 作業で使います。
+A shared Python environment for lightweight experiments and writing workflows, including Quarto projects whose source files live in OneDrive.
 
-通常の開発プロジェクトでは、それぞれのプロジェクト内で `uv` による専用環境を使ってください。この環境を使うのは、独立した依存管理が不要な作業に限ります。
+Use a dedicated `uv` environment for each regular development project. This shared environment is intended for work that does not need its own dependency set.
 
-この作業フォルダは OneDrive の外にあり、環境は `.venv` に作られます。`pyproject.toml` と `uv.lock` が依存関係の基準です。環境への追加・削除はこのフォルダで `uv add` / `uv remove` を使って行い、手動の `pip install` は避けてください。`uv sync` はマニフェストにないパッケージを環境から削除します。
+This working directory is outside OneDrive, and the environment lives in `.venv`. `pyproject.toml` and `uv.lock` are the source of truth for dependencies. Add or remove packages from this directory with `uv add` or `uv remove`; avoid installing packages with `pip` directly. `uv sync` removes packages that are not declared in the project.
 
-## 初回セットアップ・更新
+## Initial setup and updates
 
 ```powershell
 Set-Location "$HOME\work\venv-global"
 uv sync
 ```
 
-## PowerShell で有効化
+## Activate in PowerShell
 
-どの作業フォルダからでも、次を実行します。
+From any working directory, run:
 
 ```powershell
 . "$HOME\work\venv-global\activate.ps1"
 ```
 
-有効化すると `python` が共有環境を指し、`QUARTO_PYTHON` にも同じ Python が設定されます。その PowerShell セッションから実験スクリプトや `quarto render` を実行できます。終了時は `deactivate` を実行します。
+The `python` command will then use the shared environment, and `QUARTO_PYTHON` will point to the same interpreter. Run experiment scripts or `quarto render` in that PowerShell session. Run `deactivate` when you are finished.
 
-Quarto CLI 自体は Python パッケージではないため、別途インストールが必要です。この環境には Quarto の Python/Jupyter 実行に使う `jupyter` を含めています。
+The Quarto CLI is installed separately; it is not a Python package. This environment includes `jupyter` for Quarto's Python/Jupyter execution.
 
-有効化せずに Python スクリプトを一度だけ実行する場合:
+To run a Python script once without activating the environment:
 
 ```powershell
 uv run --project "$HOME\work\venv-global" -- python .\experiment.py
